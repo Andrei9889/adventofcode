@@ -1,33 +1,36 @@
-import React, { useEffect } from 'react';
-import axios from 'axios'
+import React, {  } from 'react';
 
-import {text} from './day1-1'
+import { text } from './day1-1';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
-//3337766
-  // const obj = text.trim().split('\n')
-  const obj = [3, 11, 14]
+  const obj = text.trim().split('\n');
+  // const obj = [174, 122, 178, 2]
   console.log(obj)
 
-  const result = obj.map(( item ) => {
-    let elem = 0
-    (function recFuel(item){
-      item = Math.floor(item/3) - 2
-      console.log(123123123)
-      if (item > 0){ 
-        elem += item
-        return recFuel(item)
+  const dividedArray = obj.map(item => {
+    let resultMass = 0
+
+    function recFuel(fuel){
+      let mass =  Math.floor(fuel / 3) - 2;
+      if(mass > 0){
+        resultMass += mass
+        recFuel(mass)
       } else return
-    })()
+    }
 
-    console.log(elem)
-    return elem
-  } ).reduce((sum, current) => sum + current )
+    recFuel(item)
 
-  console.log(result)
-  
+    return resultMass;
+  });
+
+  console.log(dividedArray)
+
+  const amountOfFuel = dividedArray.reduce((summ, current) => summ + current )
+
+  console.log(amountOfFuel) //3337766
+
   return (
     <div className="App">
       <header className="App-header">
