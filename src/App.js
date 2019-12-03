@@ -1,35 +1,17 @@
 import React, {  } from 'react';
 
-import { text } from './day1-1';
+import {day1} from './days/day1/index'
+import {day2} from './days/day2/index'
+
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const obj = text.trim().split('\n');
-  // const obj = [174, 122, 178, 2]
-  console.log(obj)
 
-  const dividedArray = obj.map(item => {
-    let resultMass = 0
+day1() //day1-1: 3337766, day1-2: 5003788
+day2() //day2-1: 5110675 
+  
 
-    function recFuel(fuel){
-      let mass =  Math.floor(fuel / 3) - 2;
-      if(mass > 0){
-        resultMass += mass
-        recFuel(mass)
-      } else return
-    }
-
-    recFuel(item)
-
-    return resultMass;
-  });
-
-  console.log(dividedArray)
-
-  const amountOfFuel = dividedArray.reduce((summ, current) => summ + current )
-
-  console.log(amountOfFuel) //3337766
 
   return (
     <div className="App">
