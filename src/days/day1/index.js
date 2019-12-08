@@ -23,5 +23,5 @@ export function day1() {
   const amountOfFuel = dividedArray.reduce((summ, current) => summ + current);
   // console.log(amountOfFuel); //before: 3337766, after: 5003788
 
-  console.log('Amount of fuel: ', amountOfFuel);
+  // console.log('Amount of fuel: ', amountOfFuel);
 }
