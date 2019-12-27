@@ -1,5 +1,4 @@
 import { opcode } from './day2-1'
-import { tsConstructSignatureDeclaration } from '@babel/types'
 
 const INDICATORS = {
   ADD: 1,

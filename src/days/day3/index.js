@@ -1,91 +1,210 @@
+import { firstLine, secondLine } from './day3-1';
+
 export function day3() {
-  const firstLine = ['T5', 'R3', 'D4']
-  const secondLine = ['R2', 'T4', 'R3']
+  // let firstArray = firstLine.split(',');
+  // let secondArray = secondLine.split(',');
 
-  const getCoordinates = (line) => {
-    let x = 0
-    let y = 0
-    let result = []
-    line.forEach((step)=>{
-      switch(step[0]){
-        case 'T':
-            y += +step.slice(1)
-          break
-        case 'R':
-            x += +step.slice(1)
-          break
-        case 'D':
-            y -= +step.slice(1)
-          break
-        case 'L':
-            x -= +step.slice(1)
-          break
-        default: return null 
-      }
-      result.push([x,y])
-    })
-    return result
-  }  
-  
+  // const getCoordinates = line => {
+  //   let x = 0;
+  //   let y = 0;
+  //   let result = [];
+  //   line.forEach(step => {
+  //     switch (step[0]) {
+  //       case 'U':
+  //         for (let z = 1; z <= +step.slice(1); z++) {
+  //           y++;
+  //           result.push([x, y]);
+  //         }
+  //         break;
+  //       case 'R':
+  //         for (let z = 1; z <= +step.slice(1); z++) {
+  //           x++;
+  //           result.push([x, y]);
+  //         }
+  //         break;
+  //       case 'D':
+  //         for (let z = 1; z <= +step.slice(1); z++) {
+  //           y--;
+  //           result.push([x, y]);
+  //         }
+  //         break;
+  //       case 'L':
+  //         for (let z = 1; z <= +step.slice(1); z++) {
+  //           x--;
+  //           result.push([x, y]);
+  //         }
+  //         break;
+  //       default:
+  //         return null;
+  //     }
 
-  let intersection = (X, Y) => {
-    let a1 = X[0][1] - X[1][1]
-    let b1 = X[1][0] - X[0][0]
-    let a2 = Y[0][1] - Y[1][1]
-    let b2 = Y[1][0] - Y[0][0]
+  //   });
+  //   return result;
+  // };
 
-    let d = a1 * b2 - a2 * b1
+  // let red = getCoordinates(firstArray);
+  // let blue = getCoordinates(secondArray);
 
-    console.log(a1, b1, a2, b2, d)
+  // console.log(red);
+  // console.log(blue);
 
-    if(d !== 0){
-      let c1 = X[1][1] * X[0][0] - X[1][0] * X[0][1]
-      let c2 = Y[1][1] * Y[0][0] - Y[1][0] * Y[0][1]
+  // let intersections = [];
 
-      
-      let xi = (b1 * c2 - b2 * c1) / d
-      let yi = (a2 * c1 - a1 * c2) / d;
-      return [xi, yi]
-    }
-  }
-  
-  let red = getCoordinates(firstLine)
-  let blue = getCoordinates(secondLine)
+  // red.forEach(redPixel => {
+  //   blue.forEach(bluePixel => {
+  //     if (redPixel[0] === bluePixel[0] && redPixel[1] === bluePixel[1]) {
+  //       intersections.push(redPixel);
+  //     }
+  //   });
+  // });
 
-  console.log(intersection([[3,5], [3,1]], [[0,0],[2,0]]))
+  // // console.log(intersections)
 
+  // let summOfCoordinates = intersections.map(pixel => {
+  //   return Math.abs(pixel[0]) + Math.abs(pixel[1]);
+  // });
 
-  // let arrayOfIntersections = []
-
-  // blue.forEach((blueElem, blueIndex)=>{
-
-  //   let blueEnd = blueElem
-  //   let blueStart = blueIndex === 0 ? [0,0] : blue[blueIndex - 1]
-
-  //   red.forEach((redElem, redIndex)=>{
-  //     let redEnd = redElem
-  //     let redStart = redIndex === 0 ? [0,0] : red[redIndex - 1]
-
-  //     console.log([redStart, redEnd], [blueStart, blueEnd])
-
-  //     let defined = intersection([redStart, redEnd], [blueStart, blueEnd])
-  //     console.log(defined)
-  //     // if(defined){
-  //     //   arrayOfIntersections.push(defined)
-  //     // }
-
-  //     console.log('---------------------------')
+  // console.log(
+  //   summOfCoordinates.sort((a, b) => {
+  //     return a - b;
   //   })
-  // })
+  // );
 
-  // console.log(arrayOfIntersections)
-  // let arrayOfDistances = arrayOfIntersections.map((coordinates)=>{
-  //   return coordinates[0] + coordinates[1]
-  // })
+  //-------------------------------------------------------------- part 2 -----------------------------------------------
 
-  // arrayOfDistances.sort()
+  let firstArray = firstLine.split(',');
+  let secondArray = secondLine.split(',');
 
-  // console.log(arrayOfDistances)
-  
+  const getCoordinates = line => {
+    let x = 0;
+    let y = 0;
+    let result = [];
+    line.forEach(step => {
+      switch (step[0]) {
+        case 'U':
+          for (let z = 1; z <= +step.slice(1); z++) {
+            y++;
+            result.push([x, y]);
+          }
+          break;
+        case 'R':
+          for (let z = 1; z <= +step.slice(1); z++) {
+            x++;
+            result.push([x, y]);
+          }
+          break;
+        case 'D':
+          for (let z = 1; z <= +step.slice(1); z++) {
+            y--;
+            result.push([x, y]);
+          }
+          break;
+        case 'L':
+          for (let z = 1; z <= +step.slice(1); z++) {
+            x--;
+            result.push([x, y]);
+          }
+          break;
+        default:
+          return null;
+      }
+    });
+    return result;
+  };
 
+  const getMiniSteps = (line, find) => {
+    let x = 0;
+    let y = 0;
+    let miniSteps = 0;
+    try {
+      line.forEach(step => {
+        switch (step[0]) {
+          case 'U':
+            for (let z = 1; z <= +step.slice(1); z++) {
+              y++;
+              miniSteps++;
+              if (find[0] === x && find[1] === y) {
+                throw new Error();
+              }
+            }
+            break;
+          case 'R':
+            for (let z = 1; z <= +step.slice(1); z++) {
+              x++;
+              miniSteps++;
+              if (find[0] === x && find[1] === y) {
+                throw new Error();
+              }
+            }
+            break;
+          case 'D':
+            for (let z = 1; z <= +step.slice(1); z++) {
+              y--;
+              miniSteps++;
+              if (find[0] === x && find[1] === y) {
+                throw new Error();
+              }
+            }
+            break;
+          case 'L':
+            for (let z = 1; z <= +step.slice(1); z++) {
+              x--;
+              miniSteps++;
+              if (find[0] === x && find[1] === y) {
+                throw new Error();
+              }
+            }
+            break;
+          default:
+            return null;
+        }
+      });
+    } catch {
+      return miniSteps;
+    }
+  };
+
+  let red = getCoordinates(firstArray);
+  let blue = getCoordinates(secondArray);
+
+  // console.log(red);
+  // console.log(blue);
+
+  let intersections = [];
+
+  red.forEach(redPixel => {
+    blue.forEach(bluePixel => {
+      if (redPixel[0] === bluePixel[0] && redPixel[1] === bluePixel[1]) {
+        intersections.push(redPixel);
+      }
+    });
+  });
+
+  // console.log(intersections)
+
+  let steps = [];
+
+  intersections.forEach(elem => {
+    let firstRed = getMiniSteps(firstArray, elem);
+    let firstBlue = getMiniSteps(secondArray, elem);
+
+    let obg = {
+      red: firstRed,
+      blue: firstBlue,
+      coords: elem
+    };
+
+    steps.push(obg);
+  });
+
+  let sumOfSteps = steps.map(point => {
+    return point.red + point.blue;
+  });
+
+
+  console.log(
+    sumOfSteps.sort((a, b) => {
+      return a - b;
+    })[0]
+  );
 }
