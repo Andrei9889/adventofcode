@@ -3,15 +3,17 @@ import React, {  } from 'react';
 import {day1} from './days/day1/index'
 import {day2} from './days/day2/index'
 import {day3} from './days/day3/index'
+import {day4} from './days/day4/index'
 
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
 
-// day1() //day1-1: 3337766, day1-2: 5003788
-// day2() //day2-1: 5110675 
-day3() //day2-1: 5110675 
+// day1() 
+// day2()
+// day3()
+day4()
   
 
 
